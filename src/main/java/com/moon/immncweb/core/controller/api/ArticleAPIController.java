@@ -8,6 +8,7 @@ import com.moon.immncweb.core.entity.ArticleInfo;
 import com.moon.immncweb.core.service.ArticleInfoService;
 import com.moon.immncweb.core.service.NewsRedisService;
 import com.moon.immncweb.core.utils.CookieUtil;
+import com.moon.immncweb.core.utils.RandomUtil;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +18,7 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.List;
+import java.util.Random;
 
 /**
  * @Author zhaoxiang
@@ -43,14 +45,11 @@ public class ArticleAPIController {
     public ResponseVO<Page<NewsVO>> selectIndexNews(@RequestParam(value = "page", defaultValue = "1") Integer page,
                                                     @RequestParam(value = "size", defaultValue = "7") Integer size,
                                                     HttpServletRequest request, HttpServletResponse response) {
-        Cookie cookie = CookieUtil.get(request, "index_page");
-        Integer index_page = 1;
-        if (cookie != null) {
-            index_page = Integer.valueOf(CookieUtil.get(request, "index_page").getValue());
+        if (page>1){
+            page = new Random().nextInt(1000);
         }
-        Integer setCookie = index_page + 1;
-        CookieUtil.set(response, "index_page", String.valueOf(setCookie));
-        return ResponseVO.e(ResponseCode.SUCCESS, articleInfoService.selectHomeNewsByPage(new Page<>(index_page, size)));
+
+        return ResponseVO.e(ResponseCode.SUCCESS, articleInfoService.selectHomeNewsByPage(new Page<>(page, size)));
     }
 
     @PostMapping("/classify")
@@ -59,14 +58,8 @@ public class ArticleAPIController {
                                                     @RequestParam(value = "size", defaultValue = "7") Integer size,
                                                     @RequestParam(value = "classify", required = true) Integer classify,
                                                     HttpServletRequest request, HttpServletResponse response) {
-        Cookie cookie = CookieUtil.get(request, "classify_page_" + classify);
-        Integer index_page = 1;
-        if (cookie != null) {
-            index_page = Integer.valueOf(CookieUtil.get(request, "classify_page_" + classify).getValue());
-        }
-        Page<NewsVO> newsVOPage = articleInfoService.selectClassifyNewsByPage(new Page<>(index_page, size), classify);
-        Integer setCookie = index_page + 1;
-        CookieUtil.set(response, "classify_page_" + classify, String.valueOf(setCookie));
+        page = new Random().nextInt(500);
+        Page<NewsVO> newsVOPage = articleInfoService.selectClassifyNewsByPage(new Page<>(page, size), classify);
         return ResponseVO.e(ResponseCode.SUCCESS, newsVOPage);
     }
 
@@ -76,6 +69,7 @@ public class ArticleAPIController {
                                                           @RequestParam(value = "size", defaultValue = "7") Integer size,
                                                           @RequestParam(value = "type") Integer type,
                                                           HttpServletRequest request) {
+        page = new Random().nextInt(500);
         return ResponseVO.e(ResponseCode.SUCCESS, articleInfoService.selectNewsByDetailType(new Page<>(page, size), type));
     }
 

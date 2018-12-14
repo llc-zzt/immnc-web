@@ -15,7 +15,10 @@
             </div>
             <div class="moon-nav-search">
                 <div class="moon-nav-search-lift">
-                    <button class="layui-btn layui-btn-primary layui-btn-sm">登录</button>
+                    <a href="">
+                        <img id="userAvatar" width="46px" height="46px"  src="" alt="">
+                    </a>
+                    <a href="/login.html" style="display: none" id="login_button" class="layui-btn layui-btn-primary layui-btn-sm">登录</a>
                 </div>
                 <div class="moon-nav-search-right">
                     <div class="moon-nav-search-input">

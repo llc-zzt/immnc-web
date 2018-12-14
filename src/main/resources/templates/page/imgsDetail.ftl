@@ -103,8 +103,9 @@
                 </div>
 
                 <!--热搜风云榜-->
-                <#if searchTopList?? && (searchTopList?size > 0)>
-                    <div style="margin-top: 24px" id="top-side" class="moon-news-card moon-height-js">
+                <div id="top-side">
+                     <#if searchTopList?? && (searchTopList?size > 0)>
+                    <div style="margin-top: 11px" class="moon-news-card moon-height-js">
                         <span class="moon-news-card-split2"></span>
                         <div class="news-hot-list">
                             <div class="news-hot-title"><p>热搜风云榜</p></div>
@@ -126,31 +127,31 @@
                         </div>
 
                     </div>
-                </#if>
+                     </#if>
                 <#--精彩图片-->
-                <#if graphic?? && (graphic?size > 0)>
+                    <#if graphic?? && (graphic?size > 0)>
                     <div style="margin-top: 24px" class="moon-news-card moon-height-js">
                         <span class="moon-news-card-split2"></span>
                         <div class="news-atlas-list">
                             <div class="news-atlas-title"><p>精彩新闻</p></div>
                             <div class="news-atlas-content">
                                 <div class="atlas-item-row">
-                                    <#list graphic as item>
-                                        <div style="margin-bottom: 10px"
-                                             onclick="goTo(${classifyId},${item.getArticleId()})">
-                                            <a class="atlas-item-column-a">
-                                                <img class="atlas-item-column-img"
-                                                     src="${config.getImgPrefix()+item.getImgUrl()[0]}" alt="">
-                                            </a>
-                                            <a class="atlas-item-column-info">${item.getTitle()}</a>
-                                        </div>
-                                    </#list>
+                                <#list graphic as item>
+                                    <div class="atlas-column-t-i">
+                                        <a class="atlas-item-column-t-i"
+                                           onclick="goTo(${classifyId},${item.getArticleId()})">
+                                            <img class="atlas-item-column-img" src="${item.getImgUrl()[0]}" alt="">
+                                        </a>
+                                        <a onclick="goTo(${classifyId},${item.getArticleId()})"
+                                           class="atlas-item-column-info">${item.getTitle()}</a>
+                                    </div>
+                                </#list>
                                 </div>
                             </div>
                         </div>
-
                     </div>
-                </#if>
+                    </#if>
+                </div>
                 <#if imgMap?? && (imgMap?size > 0)>
                     <div style="margin-top: 24px" class="moon-news-card moon-height-js">
                         <span class="moon-news-card-split2"></span>
@@ -204,11 +205,11 @@
         </ul>
     </div>
     <!--底部-->
-    <#include "../common/foot.ftl">
 </div>
 <script src="/layui/layui.js"></script>
 <script src="/js/detail.js"></script>
 <script src="/js/jquery-3.3.1.min.js"></script>
+<script src="/js/jquery.cookie.js"></script>
 <script src="/js/moon.js"></script>
 <script src="/js/comment.js"></script>
 <script src="/js/jquery.sinaEmotion.js"></script>

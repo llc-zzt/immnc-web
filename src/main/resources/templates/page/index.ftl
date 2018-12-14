@@ -10,8 +10,9 @@
     <!--内容-->
     <div class="moon-content">
         <!--carousel-->
-        <div class="layui-carousel moon-content-carousel" id="test1">
-            <div carousel-item id="home_banner">
+        <div class="moon-banner-new">
+            <div class="layui-carousel moon-content-carousel" lay-filter="test1" id="test1">
+                <div carousel-item id="home_banner">
                 <#list banner as item>
                     <div onclick="goTo(${classifyId},${item.getArticleId()})">
                         <div class="moon-carousel-p">
@@ -19,15 +20,29 @@
                             <h2>${item.getTitle()}</h2>
                         </div>
                         <#if item.getTypeId()==1>
-                            <img width="1200px" height="600px" src="${item.getImgUrl()[0]}">
+                            <img width="800px" height="480px" src="${item.getImgUrl()[0]}">
                         <#else >
-                            <img width="1200px" height="600px" src="${config.getImgPrefix()+item.getImgUrl()[0]}">
+                            <img width="800px" height="480px" src="${config.getImgPrefix()+item.getImgUrl()[0]}">
                         </#if>
 
                     </div>
                 </#list>
+                </div>
             </div>
+            <ul class="moon-banner-right">
+                <#list banner as item>
+                    <li id="banner-right-${item_index}" <#if item_index==0>class="banner-this"</#if>
+                        onclick="goTo(${classifyId},${item.getArticleId()})">
+                        <#if item.getTypeId()==1>
+                            <img src="${item.getImgUrl()[0]}">
+                        <#else >
+                            <img src="${config.getImgPrefix()+item.getImgUrl()[0]}">
+                        </#if>
+                    </li>
+                </#list>
+            </ul>
         </div>
+
         <!--新闻内容-->
         <div class="moon-content-news">
             <div class="moon-content-news-lift" id="home-list">
@@ -135,8 +150,9 @@
             <!--横幅-->
             <div class="moon-content-news-right">
                 <!--横幅-->
-                <#if searchTopList?? && (searchTopList?size > 0)>
-                    <div style="margin-top: 11px" id="top-side" class="moon-news-card moon-height-js">
+                <div id="top-side">
+                     <#if searchTopList?? && (searchTopList?size > 0)>
+                    <div style="margin-top: 11px" class="moon-news-card moon-height-js">
                         <span class="moon-news-card-split2"></span>
                         <div class="news-hot-list">
                             <div class="news-hot-title"><p>热搜风云榜</p></div>
@@ -158,31 +174,32 @@
                         </div>
 
                     </div>
-                </#if>
-            <#--精彩图片-->
-                <#if graphic?? && (graphic?size > 0)>
+                     </#if>
+                <#--精彩图片-->
+                    <#if graphic?? && (graphic?size > 0)>
                     <div style="margin-top: 24px" class="moon-news-card moon-height-js">
                         <span class="moon-news-card-split2"></span>
                         <div class="news-atlas-list">
                             <div class="news-atlas-title"><p>精彩新闻</p></div>
                             <div class="news-atlas-content">
                                 <div class="atlas-item-row">
-                                    <#list graphic as item>
-                                        <div style="margin-bottom: 10px"
-                                             onclick="goTo(${classifyId},${item.getArticleId()})">
-                                            <a class="atlas-item-column-a">
-                                                <img class="atlas-item-column-img"
-                                                     src="${item.getImgUrl()[0]}" alt="">
-                                            </a>
-                                            <a class="atlas-item-column-info">${item.getTitle()}</a>
-                                        </div>
-                                    </#list>
+                                <#list graphic as item>
+                                    <div class="atlas-column-t-i">
+                                        <a class="atlas-item-column-t-i"
+                                           onclick="goTo(${classifyId},${item.getArticleId()})">
+                                            <img class="atlas-item-column-img" src="${item.getImgUrl()[0]}" alt="">
+                                        </a>
+                                        <a onclick="goTo(${classifyId},${item.getArticleId()})"
+                                           class="atlas-item-column-info">${item.getTitle()}</a>
+                                    </div>
+                                </#list>
                                 </div>
                             </div>
                         </div>
-
                     </div>
-                </#if>
+                    </#if>
+                </div>
+
                 <#if imgMap?? && (imgMap?size > 0)>
                     <div style="margin-top: 24px" class="moon-news-card moon-height-js">
                         <span class="moon-news-card-split2"></span>
@@ -232,7 +249,42 @@
 
                     </div>
                 </#if>
-
+            <#--网站信息-->
+                <div style="margin-top: 24px" class="moon-news-card moon-height-js">
+                    <span class="moon-news-card-split2"></span>
+                    <div class="news-hot-list">
+                        <div class="news-hot-title"><p>网站信息</p></div>
+                        <div class="news-web-content">
+                            <ul>
+                                <li class="moon-news-card">
+                                    <a class="website-item-title">
+                                        <span>关于我们</span>
+                                    </a>
+                                </li>
+                                <li class="moon-news-card">
+                                    <a class="website-item-title">
+                                        <span>备案号：蜀ICP备18018817号-1</span>
+                                    </a>
+                                </li>
+                                <li class="moon-news-card">
+                                    <a class="website-item-title">
+                                        <span>违法和不良信息举报：028-962377</span>
+                                    </a>
+                                </li>
+                                <li class="moon-news-card">
+                                    <a class="website-item-title">
+                                        <span>中国互联网举报中心 电话:12377</span>
+                                    </a>
+                                </li>
+                                <li class="moon-news-card">
+                                    <a class="website-item-title">
+                                        <span>技术支持：成都月步科技有限公司</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
 
             </div>
         </div>
@@ -241,11 +293,11 @@
             <li class="layui-icon layui-icon-top layui-fixbar-top" lay-type="top" style="display: none;"></li>
         </ul>
     </div>
-    <#include "../common/foot.ftl">
 
 </div>
 <script src="/layui/layui.js"></script>
 <script src="/js/jquery-3.3.1.min.js"></script>
+<script src="/js/jquery.cookie.js"></script>
 <script src="/js/moon.js"></script>
 <script src="/js/index.js"></script>
 <script>
@@ -266,12 +318,16 @@
         //建造实例
         carousel.render({
             elem: '#test1'
-            , width: '1200px' //设置容器宽度
-            , height: '600px'
+            , width: '800px' //设置容器宽度
+            , height: '480px'
             , arrow: 'hover' //始终显示箭头
             , anim: 'default' //切换动画方式
-            ,interval: 2000
+            , interval: 2000
             //,indicator: 'none'//指示器位置
+        });
+        carousel.on('change(test1)', function (obj) { //test1来源于对应HTML容器的 lay-filter="test1" 属性值
+            $("#banner-right-" + obj.prevIndex).removeClass("banner-this");
+            $("#banner-right-" + obj.index).addClass("banner-this");
         });
     });
 </script>

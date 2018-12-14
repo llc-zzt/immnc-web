@@ -2,10 +2,11 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>model</title>
+    <title>妙漫网创登录-手机验证码登录注册</title>
     <link rel="stylesheet" href="/layui/css/layui.css">
     <link rel="stylesheet" href="/styles/moon.css">
     <link rel="stylesheet" href="/font/iconfont.css">
+    <link rel="shortcut icon" href="/images/web_icon.ico"/>
     <style>
         body {
             background-color: #f2f2f2
@@ -36,7 +37,6 @@
             width: 200px;
             height: 79px;
             opacity: 1;
-            background-color: rgba(244, 244, 244, 1);
             margin: 24px auto;
         }
 
@@ -45,7 +45,7 @@
             width: 100%;
             display: flex;
             flex-direction: column;
-            justify-content: space-around;
+            justify-content: center;
             align-items: center;
         }
 
@@ -124,8 +124,11 @@
             height: 48px;
             opacity: 1;
             border-radius: 50%;
-            background: rgba(216, 216, 216, 1);
             cursor: pointer;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;
         }
 
         .login-phone-code {
@@ -148,92 +151,55 @@
     <div class="moon-login-content">
         <!--login form-->
         <div class="moon-login-card moon-z-depth-3">
-            <div class="moon-login-log"></div>
+            <a href="/"><img class="moon-login-log" src="/images/logo-home.png"></a>
             <div class="login-input-group">
                 <div class="login-phone-code">
-                    <input type="text" placeholder="你的电子邮箱">
-                    <button id="send-code" class="layui-btn layui-btn-xs" >发送验证码</button>
+                    <input type="text" id="phone" placeholder="您的手机号码">
+                    <button id="send-code" class="layui-btn layui-btn-xs">发送验证码</button>
                 </div>
-                <input type="password" placeholder="输入你的密码">
-                <input type="password" placeholder="确认你的密码">
+                <input id="code" type="text" placeholder="输入你的验证码">
             </div>
-            <button class="layui-btn login-input-button">注册</button>
+            <button class="layui-btn login-input-button" disabled="disabled"  onclick="login()">登录/注册</button>
             <div class="login-other-split">
                 <span></span>
                 <p>第三方登录</p><span></span>
             </div>
             <ul class="login-other-group">
-                <li class="login-other-group-items"></li>
-                <li class="login-other-group-items"></li>
-                <li class="login-other-group-items"></li>
+                <li class="login-other-group-items">
+                    <a onclick="jzz()">
+                        <img src="/images/qq-login.png" alt="QQ登陆">
+                    </a>
+
+                </li>
+                <li class="login-other-group-items">
+                    <a onclick="jzz()">
+                        <img src="/images/wechat-login.png" alt="微信登陆">
+                    </a>
+
+                </li>
+                <li class="login-other-group-items">
+                    <a href="/login.html">
+                        <img width="36px" src="/images/passwordLogin.png" alt="账号登录">
+                    </a>
+                </li>
             </ul>
         </div>
     </div>
     <div class="moon-login-foot">
-        <p>Copyright © 2014-2017 成都荣耀世纪文化传媒有限公司 蜀ICP备17008769号-1 </p>
-        <p>违法和不良信息举报：888-88888888</p>
+        <p>Copyright © 2018-2020 技术支持: 成都月步科技有限公司 蜀ICP备18018817号-1 </p>
+        <p>违法和不良信息举报：028-962377</p>
     </div>
 
 </div>
 
 <script src="/layui/layui.js"></script>
 <script src="/js/jquery-3.3.1.min.js"></script>
+<script src="/js/jquery.cookie.js"></script>
 
 <script src="/js/moon.js"></script>
+<script src="/js/moon-register.js"></script>
 <script type="text/javascript">
-    var countdown=60;
-    function settime() {
-        console.log(countdown)
-        if (countdown == 0) {
-            $("#send-code").removeAttr("disabled")
-            $("#send-code").css({"background":"rgba(29, 186, 236, 1)"})
-            $("#send-code").removeClass("layui-btn-disabled");
-            $("#send-code").html("获取验证码");
-            countdown = 60;
 
-        } else {
-            $("#send-code").addClass("layui-btn-disabled");
-            $("#send-code").html("重新发送 "+ countdown+"" );
-            countdown--;
-            setTimeout(function() {
-                settime()
-            },1000)
-        }
-    }
-    $(function () {
-        $("#send-code").click(function () {
-            $("#send-code").attr("disabled","disabled")
-            $("#send-code").css({"background-color":"#FBFBFB"})
-            layui.use('layer', function(){
-                var layer = layui.layer;
-
-                layer.msg('短信发送成功');
-            });
-            settime()
-        })
-    })
-</script>
-<script>
-    $(function () {
-        var height = window.innerHeight - 80
-        console.log(height)
-        console.log(window.innerHeight)
-        $(".moon-login-content").css({'height': height})
-    })
-</script>
-<script>
-    layui.use('carousel', function () {
-        var carousel = layui.carousel;
-        //建造实例
-        carousel.render({
-            elem: '#test1'
-            , width: '1200px' //设置容器宽度
-            , height: '600px'
-            , arrow: 'hover' //始终显示箭头
-            , anim: 'fade' //切换动画方式
-            //,indicator: 'none'//指示器位置
-        });
-    });
 </script>
 </body>
 </html>

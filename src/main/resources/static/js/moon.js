@@ -46,7 +46,7 @@ function getHeight() {
 
         height = height + $(obj).height() + 10
     })
-    return height + 744;
+    return height + 624;
 }
 
 $(function () {
@@ -128,11 +128,60 @@ function getNav(classify) {
         })
 
     }
+
 }
 function goTo(classifyId, newsId) {
     window.open('/detail/' + classifyId + '/' + newsId + '.html')
 }
 $(function () {
-    console.log(document.cookie)
+    if ($.cookie('userVO') != null) {
+        var userVO = JSON.parse($.cookie('userVO'));
+        //导航头像
+        $("#userAvatar").css({"display":"block"})
+        $("#userAvatar").attr("src",userVO.avatar)
+        $("#login_button").css({"display":"none"})
+        //评论头像
+        $("#cmt-username-valid").removeClass("user-login")
+        $("#cmt-avatar-valid").removeClass("is_login")
+        $("#cmt-username").html(userVO.nikeName+":")
+        $("#cmt-avatar").attr("src",userVO.avatar)
+
+    } else {
+        //跳转登录
+        $("#userAvatar").css({"display":"none"})
+        $("#cmt-avatar-valid").addClass("is_login")
+        $("#cmt-avatar-valid").attr("href","/login.html")
+        $("#login_button").css({"display":"block"})
+        if (!$("#cmt-username-valid").hasClass("user-login")) {
+            $("#cmt-username-valid").addClass("user-login")
+        }
+
+    }
 })
+function valid() {
+    $.ajax({
+        type: 'post',
+        dataType: 'json',
+        contentType: "application/x-www-form-urlencoded",
+        xhrFields: {
+            withCredentials: true
+        },
+        crossDomain: true,
+        url: 'https://news.immnc.com/api/user/valid',// "https://news.immnc.com/api/user/loginAndPhonePassword"
+        success: function (data) {
+            if (data.code == 0) {
+                var userVO = data.data.userVO
+                $.cookie('userVO', JSON.stringify(userVO), {expires: 7});
+            }else {
+                layer.msg("用户失效，请重新登录")
+                setTimeout(function () {
+                    location = "/login.html"
+                },1000)
+            }
+        },
+        error: function (data) {
+            layer.msg("网络异常")
+        }
+    });
+}
 

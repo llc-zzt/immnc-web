@@ -4,15 +4,15 @@
         <div class="moon-comment-header">
             <div class="avatar-img">
                 <#--class is_login-->
-                <a class="is_login" href="javascript:void(0);">
-                    <img src="//sucimg.itc.cn/avatarimg/10101371442733_1543997437371_c55" width="42"
+                <a id="cmt-avatar-valid" class="is_login">
+                    <img id="cmt-avatar" src="//sucimg.itc.cn/avatarimg/10101371442733_1543997437371_c55" width="42"
                          height="42" alt="">
-                    <p class="login_style" href="">登录</p>
+                    <p class="login_style" href="/login.html">登录</p>
                 </a>
             </div>
             <#--user-login-->
-            <div class="user-wrap-w user-login">
-                <span class="">popo：</span>
+            <div id="cmt-username-valid" class="user-wrap-w user-login">
+                <span id="cmt-username" class="">popo：</span>
             </div>
         </div>
         <!--评论输入框-->
@@ -22,7 +22,7 @@
             <div class="moon-comment-content-r"></div>
             <div class="moon-comment-content-main">
                 <a href="#comment" class="moon-relpay-box">
-                    <textarea class="textarea-fw comment-textarea" placeholder="说点什么吧~"></textarea>
+                    <textarea id="${newsVO.getArticleId()}" class="textarea-fw comment-textarea" placeholder="说点什么吧~"></textarea>
                 </a>
             </div>
         </div>
@@ -30,7 +30,7 @@
         <div class="comment-control">
             <div class="emotion">
                 <i class="immnc mmnc-xiaolianmanyifuwu face"></i>
-                <button class="layui-btn reply-btn" onclick="send()"></button>
+                <button  class="layui-btn reply-btn" onclick="send()"></button>
             </div>
         </div>
         <!--评论头-->
