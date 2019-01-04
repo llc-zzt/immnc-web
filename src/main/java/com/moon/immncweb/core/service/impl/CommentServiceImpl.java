@@ -36,7 +36,7 @@ public class CommentServiceImpl extends ServiceImpl<CommentMapper, Comment> impl
         Page<CommentVO> commentPage = new Page<>(1, 5);
 
         EntityWrapper<Comment> wrapper = new EntityWrapper<>();
-        wrapper.eq("aid", aid).eq("show_state", 1);
+        wrapper.eq("aid", aid).eq("show_state", 1).orderBy("time", false);
         page = this.selectPage(page, wrapper);
         BeanUtils.copyProperties(page, commentPage);
         if (!page.getRecords().isEmpty()) {

@@ -18,6 +18,6 @@ import java.util.List;
 @Mapper
 @Repository
 public interface CommentMapper extends BaseMapper<Comment> {
-    @Select("select * from comment where aid = #{aid} and show_state = 1 limit 5,15")
+    @Select("select * from comment where aid = #{aid} and show_state = 1 ORDER BY `time` DESC limit 5,15")
     List<Comment> selectDetailAllComment(@Param("aid") String aid);
 }

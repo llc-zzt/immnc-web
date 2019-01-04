@@ -3,11 +3,11 @@
         <div class="search-model-logo">
             <img src="/images/logo-search.png" alt="">
         </div>
-        <form class="search-model-input">
+        <div class="search-model-input">
             <input id="bdcsMain" type="text" placeholder="搜个关键字看看~">
             <#--onclick="window.open('//zhannei.immnc.com?s=9033002423418034164&entry=1&q='+document.getElementById('bdcsMain').value)"-->
-            <button class="layui-btn" onclick="window.open('http://zhannei.baidu.com/cse/search?s=9033002423418034164&entry=1&q='+document.getElementById('bdcsMain').value)" >立即搜索</button>
-        </form>
+            <button class="layui-btn" onclick="goToSearch()" >立即搜索</button>
+        </div>
     </div>
         <#if (searchTopList?size>0)>
             <div class="moon-search-model-bottom">

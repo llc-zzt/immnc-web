@@ -297,6 +297,29 @@ public class ArticleInfoServiceImpl extends ServiceImpl<ArticleInfoMapper, Artic
         this.baseMapper.updateTopNum(articleId);
     }
 
+    @Override
+    public Page<NewsVO> pageLikeSearch(Page<ArticleInfo> page, String key) {
+        EntityWrapper<ArticleInfo> wrapper = new EntityWrapper<>();
+        Map<String, Object> map = new HashMap<>();
+        map.put("draft", 0);
+        map.put("show_state", 1);
+        map.put("audit_state", 1);
+        wrapper.allEq(map)
+                .like("title",key)
+                .orderBy("crate_time", false);
+        Page<ArticleInfo> articleInfoPage = this.selectPage(page, wrapper);
+        Page<NewsVO> newsVOPage = new Page<>();
+        BeanUtils.copyProperties(articleInfoPage, newsVOPage);
+        if (!articleInfoPage.getRecords().isEmpty()) {
+            newsVOPage.setRecords(articleInfoPage.getRecords().stream().map(e -> {
+                return articleToNews(e);
+            }).collect(Collectors.toList()));
+        }
+        return newsVOPage;
+    }
+
+
+
     /**
      * 对象转换
      *

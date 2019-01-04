@@ -52,10 +52,10 @@ function sendCode() {
                     withCredentials: true
                 },
                 crossDomain: true,
-                url: 'http://localhost:8888/api/user/checkPhoneToCode',// "https://news.immnc.com/api/user/checkPhoneToCode"
+                url: 'https://news.immnc.com/api/user/checkPhoneToCode',// "https://news.immnc.com/api/user/checkPhoneToCode"
                 data: {
                     "phone": phone,
-                    "type": 0
+                    "type": 1
                 },
                 success: function (data) {
                     if (data.code ==0){
@@ -87,6 +87,10 @@ document.onkeydown = function (event) {
 function login() {
     phone = $("#phone").val();
     var code = $("#code").val();
+    var password = $("#password").val();
+    if (password =="" || password == null){
+        return layer.msg("请输入密码")
+    }
     if (code != "" && code != null) {
         //登录
         $.ajax({
@@ -97,17 +101,22 @@ function login() {
                 withCredentials: true
             },
             crossDomain: true,
-            url: 'http://localhost:8888/api/user/loginByPhoneAndCode',// "https://news.immnc.com/api/user/loginByPhoneAndCode"
+            url: 'https://news.immnc.com/api/user/register',// "https://news.immnc.com/api/user/loginByPhoneAndCode"
             data: {
                 "phone": phone,
-                "code": code
+                "code": code,
+                "password": code,
             },
             success: function (data) {
                 layer.msg(data.message);
                 if (data.code == 0) {
                     var userVO = data.data.userVO
                     $.cookie('userVO', JSON.stringify(userVO), {expires: 7});
-                    location = "/"
+                    if (sessionStorage.getItem("history_login")==null) {
+                        location = "/"
+                    }else {
+                        history.go(parseInt(sessionStorage.getItem("history_login")))
+                    }
                 }
 
             },

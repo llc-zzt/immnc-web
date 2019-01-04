@@ -44,7 +44,7 @@ layui.use('flow', function () {
                     if (item.typeId == 2) {
                         var imgsDemo = "";
                         layui.each(item.imgUrl, function (index, item) {
-                            if (index < 5)
+                            if (index < 4)
                                 imgsDemo = imgsDemo + '<li><img src="' + urlPrefix + item + '" alt="' + item.title + '"></li>\n'
                         })
                         console.log('var imgsDemo=' + imgsDemo)
@@ -121,7 +121,7 @@ layui.use('flow', function () {
         }
     });
 });
-var pushTime = 1000 * 60*2;
+var pushTime = 1000 *3*60;
 setInterval("addPush()", pushTime);
 var pushFlag = false;
 
@@ -142,7 +142,7 @@ $("#home-list").on("click", "#refresh_float_click", function () {
     setTimeout(function () {
         $('.moon-nav').css({'height': 0})
     }, 100)
-    document.getElementById("home-list").scrollIntoView()
+
     var lis = []
     $.post(localPrefix+'/moon/article/index?page=' + 2, function (res) {
         //假设你的列表返回在data集合中
@@ -181,7 +181,7 @@ $("#home-list").on("click", "#refresh_float_click", function () {
             if (item.typeId == 2) {
                 var imgsDemo = "";
                 layui.each(item.imgUrl, function (index, item) {
-                    if (index < 5)
+                    if (index < 4)
                         imgsDemo = imgsDemo + '<li><img src="' + urlPrefix + item + '" alt="' + item.title + '"></li>\n'
                 })
                 console.log('var imgsDemo=' + imgsDemo)
@@ -248,9 +248,11 @@ $("#home-list").on("click", "#refresh_float_click", function () {
                 )
             }
         });
-        $("#home-list").prepend(lis)
+        lis.push('<div id="refresh_float_click" class="msg-alert msg-alert-fixed"><span>你刚刚浏览到这里，点击刷新</span> <i\n' +
+            '                        class="immnc mmnc-shuaxin" style="font-size: 15px; color: rgb(255, 255, 255);"></i></div>')
+        $("#refresh_float").after(lis)
         //执行下一页渲染，第二参数为：满足“加载更多”的条件，即后面仍有分页
         //pages为Ajax返回的总页数，只有当前页小于总页数的情况下，才会继续出现加载更多
-
+        document.getElementById("home-list").scrollIntoView()
     });
 })

@@ -166,14 +166,14 @@
                 <p>第三方登录</p><span></span>
             </div>
             <ul class="login-other-group">
-                <li class="login-other-group-items" onclick="jzz()">
+                <li class="login-other-group-items" onclick="qqLogin()">
                     <img src="/images/qq-login.png" alt="QQ登陆">
                 </li>
-                <li class="login-other-group-items" onclick="jzz()">
+                <li class="login-other-group-items" onclick="wxLogin()">
                     <img src="/images/wechat-login.png" alt="微信登陆">
                 </li>
                 <li class="login-other-group-items">
-                    <a href="/register.html">
+                    <a href="/login/code.html">
                         <img src="/images/phone_login.png" alt="手机登录">
                     </a>
 
@@ -192,13 +192,15 @@
 <script src="/js/jquery-3.3.1.min.js"></script>
 <script src="/layui/layui.js"></script>
 <script src="/js/jquery.cookie.js"></script>
-<script src="/js/moon.js"></script>
 <script src="/js/moon-login.js"></script>
+<script src="/js/wxLogin.js"></script>
+<script src="/js/qqLogin.js"></script>
 <script>
     $(function () {
         var height = window.innerHeight - 80
         $(".moon-login-content").css({'height': height})
     })
+
 </script>
 <script>
 

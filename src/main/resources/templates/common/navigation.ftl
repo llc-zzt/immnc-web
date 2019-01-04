@@ -2,7 +2,7 @@
 <div id="moon-nav" class="moon-nav moon-z-depth">
     <div class="moon-nav-body">
         <div class="moon-nav-left">
-            <img src="/images/logo-home.png" alt="妙漫网创 immnc">
+            <img src="/images/immnc-logo-1.2.png" alt="妙漫网创 immnc">
         </div>
         <div class="moon-nav-right">
             <div class="moon-nav-classify">
@@ -15,14 +15,14 @@
             </div>
             <div class="moon-nav-search">
                 <div class="moon-nav-search-lift">
-                    <a href="">
+                    <a id="goToUserDesc" href="">
                         <img id="userAvatar" width="46px" height="46px"  src="" alt="">
                     </a>
                     <a href="/login.html" style="display: none" id="login_button" class="layui-btn layui-btn-primary layui-btn-sm">登录</a>
                 </div>
                 <div class="moon-nav-search-right">
                     <div class="moon-nav-search-input">
-                        <div class="form-group">
+                        <div style="display: none" class="form-group">
                             <div class="input-group">
                                 <input type="text" class="form-control" id="">
                             </div>

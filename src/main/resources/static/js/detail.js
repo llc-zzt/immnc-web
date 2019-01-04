@@ -88,7 +88,7 @@ function getDetail(type) {
                             if (item.typeId == 2){
                                 var imgsDemo = "";
                                 layui.each(item.imgUrl, function (index, item) {
-                                    if (index < 5)
+                                    if (index < 4)
                                         imgsDemo = imgsDemo + '<li><img src="' + urlPrefix + item + '" alt="' + item.title + '"></li>\n'
                                 })
                                 lis.push(

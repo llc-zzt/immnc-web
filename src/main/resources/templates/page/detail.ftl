@@ -16,10 +16,10 @@
                 <!--主题内容-->
                 <div class="moon-news-card ">
                     <div class="moon-news-detail">
-                        <div style="width: 800px" class="news-detail-title">
+                        <div style="width: 760px" class="news-detail-title">
                         ${newsVO.getTitle()}
                         </div>
-                        <div style="width: 800px" class="news-detail-info">
+                        <div style="width: 760px" class="news-detail-info">
                             <span class="moon-breadcrumb-detail">
                                 <a href="">${newsVO.getClassifyName()}</a>
                                     <span>/</span>
@@ -29,7 +29,7 @@
                                ${newsVO.getUsername()} ${newsVO.getRealTime()}
                             </span>
                         </div>
-                        <div style="width: 800px" class="news-detail-content news-center">
+                        <div style="width: 760px" class="news-detail-content news-center">
                         ${newsVO.getContent()}
                         </div>
                     </div>
@@ -76,9 +76,9 @@
 
                 </div>
                 <!--热搜风云榜-->
-                <div id="top-side">
-                     <#if searchTopList?? && (searchTopList?size > 0)>
-                    <div style="margin-top: 11px" class="moon-news-card moon-height-js">
+                <!--横幅-->
+                <#if searchTopList?? && (searchTopList?size > 0)>
+                    <div style="margin-top: 11px;margin-bottom: 22px" class="moon-news-card moon-height-js">
                         <span class="moon-news-card-split2"></span>
                         <div class="news-hot-list">
                             <div class="news-hot-title"><p>热搜风云榜</p></div>
@@ -100,10 +100,12 @@
                         </div>
 
                     </div>
-                     </#if>
+                </#if>
+                <div id="top-side">
+
                 <#--精彩图片-->
                     <#if graphic?? && (graphic?size > 0)>
-                    <div style="margin-top: 24px" class="moon-news-card moon-height-js">
+                    <div style="margin-top: 2px" class="moon-news-card moon-height-js">
                         <span class="moon-news-card-split2"></span>
                         <div class="news-atlas-list">
                             <div class="news-atlas-title"><p>精彩新闻</p></div>
@@ -113,7 +115,9 @@
                                     <div class="atlas-column-t-i">
                                         <a class="atlas-item-column-t-i"
                                            onclick="goTo(${classifyId},${item.getArticleId()})">
-                                            <img class="atlas-item-column-img" src="${item.getImgUrl()[0]}" alt="">
+                                            <div class="atlas-item-column-img">
+                                                <img class="" src="${item.getImgUrl()[0]}" alt="">
+                                            </div>
                                         </a>
                                         <a onclick="goTo(${classifyId},${item.getArticleId()})"
                                            class="atlas-item-column-info">${item.getTitle()}</a>
@@ -125,7 +129,7 @@
                     </div>
                     </#if>
                 </div>
-                 <#if imgMap?? && (imgMap?size > 0)>
+                <#if imgMap?? && (imgMap?size > 0)>
                     <div style="margin-top: 24px" class="moon-news-card moon-height-js">
                         <span class="moon-news-card-split2"></span>
                         <div class="news-atlas-list">
@@ -136,8 +140,9 @@
                                         <div style="margin-bottom: 10px"
                                              onclick="goTo(${classifyId},${item.getArticleId()})">
                                             <a class="atlas-item-column-a">
-                                                <img class="atlas-item-column-img"
-                                                     src="${config.getImgPrefix()+item.getImgUrl()[0]}" alt="">
+                                                <div class="atlas-item-column-img">
+                                                    <img class="" src="${config.getImgPrefix()+item.getImgUrl()[0]}" alt="">
+                                                </div>
                                                 <p>${item.getImgUrl()?size}图</p>
                                             </a>
                                             <a class="atlas-item-column-info">${item.getTitle()}</a>
@@ -148,7 +153,7 @@
                         </div>
 
                     </div>
-                 </#if>
+                </#if>
             <#--精彩视频-->
                 <#if videoList?? && (videoList?size > 0) >
                     <div style="margin-top: 24px" class="moon-news-card moon-height-js">
@@ -161,8 +166,9 @@
                                         <div style="margin-bottom: 10px"
                                              onclick="goTo(${classifyId},${item.getArticleId()})">
                                             <a class="atlas-item-column-a">
-                                                <img class="atlas-item-column-img"
-                                                     src="${config.getImgPrefix()+item.getImgUrl()[0]}" alt="">
+                                                <div class="atlas-item-column-img">
+                                                    <img class="" src="${config.getImgPrefix()+item.getImgUrl()[0]}" alt="">
+                                                </div>
                                                 <i class="layui-icon immnc mmnc-shipinbofangyingpian"></i>
                                             </a>
                                             <a class="atlas-item-column-info">${item.getTitle()}</a>
@@ -203,7 +209,7 @@
     $(function () {
         var imgs = $(".moon-news-detail img")
         for (var i = 0; i < imgs.length; i++) {
-            $(imgs[i]).css({"max-width": "800px", "display": "block", "margin": "10px auto"})
+            $(imgs[i]).css({"max-width": "760px", "display": "block", "margin": "10px auto"})
         }
     })
     $(".cmt-list-box").on("click", '.cmt-load-more', function () {

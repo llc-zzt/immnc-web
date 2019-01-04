@@ -21,4 +21,16 @@ public class LoginRegisterPageController {
     public ModelAndView register(){
         return new ModelAndView("page/register");
     }
+    @GetMapping("login/code")
+    public ModelAndView loginCode(){
+        return new ModelAndView("page/loginCode");
+    }
+    @GetMapping("login/wx")
+    public ModelAndView wxLogin(){
+        return new ModelAndView("page/wechatValid");
+    }
+    @GetMapping("login/qq")
+    public ModelAndView qqLogin(){
+        return new ModelAndView("page/qqValid");
+    }
 }

@@ -7,6 +7,7 @@ $(function () {
     var height = window.innerHeight - 80
     $(".moon-login-content").css({'height': height})
 })
+
 function settime() {
     if (countdown == 0) {
         $("#send-code").removeAttr("disabled")
@@ -26,6 +27,7 @@ function settime() {
 }
 
 var contentType = "application/x-www-form-urlencoded"
+
 function login() {
     var phone = $("#phone").val();
     var password = $("#password").val();
@@ -50,7 +52,13 @@ function login() {
                     if (data.code == 0) {
                         var userVO = data.data.userVO
                         $.cookie('userVO', JSON.stringify(userVO), {expires: 7});
-                        location = "/"
+                        setTimeout(function () {
+                            if (sessionStorage.getItem("history_login")==null) {
+                                location = "/"
+                            }else {
+                                history.go(parseInt(sessionStorage.getItem("history_login")))
+                            }
+                        },500)
                     }
 
                 },
@@ -58,7 +66,7 @@ function login() {
                     layer.msg("网络异常")
                 }
             });
-        }else {
+        } else {
             layer.msg('请输入手机号码');
         }
 
@@ -83,7 +91,7 @@ function valid() {
             if (data.code == 0) {
                 var userVO = data.data.userVO
                 $.cookie('userVO', JSON.stringify(userVO), {expires: 7});
-            }else{
+            } else {
                 location = "/login.html"
             }
 
@@ -93,6 +101,23 @@ function valid() {
         }
     });
 }
-function jzz() {
+
+function qqLogin() {
     layer.msg("加载...")
 }
+
+console.log(history.length)
+
+var history_login = sessionStorage.getItem("history_login");
+var history_num = sessionStorage.getItem("history_num");
+if (history.length>parseInt(history_num) ) {
+    if (history_login != null) {
+        var num = history_login-1;
+        sessionStorage.setItem("history_login",""+num);
+        console.log("history_login:"+sessionStorage.getItem("history_login"))
+    }
+    sessionStorage.setItem("history_num",""+history.length);
+}
+
+
+

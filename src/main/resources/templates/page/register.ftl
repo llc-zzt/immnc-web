@@ -158,21 +158,22 @@
                     <button id="send-code" class="layui-btn layui-btn-xs">发送验证码</button>
                 </div>
                 <input id="code" type="text" placeholder="输入你的验证码">
+                <input id="password" type="text" placeholder="输入你密码">
             </div>
-            <button class="layui-btn login-input-button" disabled="disabled"  onclick="login()">登录/注册</button>
+            <button class="layui-btn login-input-button" disabled="disabled"  onclick="login()">注册</button>
             <div class="login-other-split">
                 <span></span>
                 <p>第三方登录</p><span></span>
             </div>
             <ul class="login-other-group">
                 <li class="login-other-group-items">
-                    <a onclick="jzz()">
+                    <a onclick="qqLogin()">
                         <img src="/images/qq-login.png" alt="QQ登陆">
                     </a>
 
                 </li>
                 <li class="login-other-group-items">
-                    <a onclick="jzz()">
+                    <a onclick="wxLogin()">
                         <img src="/images/wechat-login.png" alt="微信登陆">
                     </a>
 
@@ -185,6 +186,7 @@
             </ul>
         </div>
     </div>
+
     <div class="moon-login-foot">
         <p>Copyright © 2018-2020 技术支持: 成都月步科技有限公司 蜀ICP备18018817号-1 </p>
         <p>违法和不良信息举报：028-962377</p>
@@ -196,10 +198,23 @@
 <script src="/js/jquery-3.3.1.min.js"></script>
 <script src="/js/jquery.cookie.js"></script>
 
-<script src="/js/moon.js"></script>
 <script src="/js/moon-register.js"></script>
+<script src="/js/wxLogin.js"></script>
+<script src="/js/qqLogin.js"></script>
 <script type="text/javascript">
-
+ $(function () {
+     var history_login = sessionStorage.getItem("history_login");
+     var history_num = sessionStorage.getItem("history_num");
+     if (history.length>parseInt(history_num) ) {
+         if (history_login != null) {
+             var num = history_login-1;
+             sessionStorage.setItem("history_login",""+num);
+             console.log("history_login:"+sessionStorage.getItem("history_login"))
+         }
+         sessionStorage.setItem("history_num",""+history.length);
+     }
+     console.log("history_login:"+sessionStorage.getItem("history_login"))
+ })
 </script>
 </body>
 </html>

@@ -63,7 +63,7 @@
             <div class="cmt-load-more-loop hide">
                 <i class="layui-icon layui-icon-loading layui-icon layui-anim layui-anim-rotate layui-anim-loop"></i>
             </div>
-            <a class="no-more-tips cmt-load-all-more" style="display: none" href="" target="_blank">以上为热门评论，妙漫网创 App 还有更多内容</a>
+            <a class="no-more-tips cmt-load-all-more" style="display: none;cursor: pointer" onclick="appDownload()">以上为热门评论，妙漫网创 App 还有更多内容</a>
         </div>
 
     </div>

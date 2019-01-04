@@ -28,4 +28,17 @@ public class HTMLSpirit {
 
         return htmlStr.trim(); //返回文本字符串
     }
+    public static String replaceBlank(String str) {
+        String dest = "";
+        if (str!=null) {
+            // 只允许字母和数字 // String regEx = "[^a-zA-Z0-9]";
+            // 清除掉所有特殊字符
+            String regEx = "[`~!@#$%^&*()+=|{}':;',\\[\\].<>/?~！@#￥%……&*（）——+|{}【】‘；：”“’。，、？]";
+            Pattern p = Pattern.compile(regEx);
+            Matcher m = p.matcher(str);
+            dest = m.replaceAll("").trim();
+        }
+        return dest;
+    }
+
 }

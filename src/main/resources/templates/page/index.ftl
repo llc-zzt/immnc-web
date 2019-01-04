@@ -85,7 +85,7 @@
                                 <div class="news-img-atlas">
                                     <ul>
                                         <#list news.getImgUrl() as img>
-                                            <#if img_index < 5>
+                                            <#if img_index < 4>
                                                 <li>
                                                     <img src="${config.getImgPrefix()+img}" alt="">
                                                 </li>
@@ -146,13 +146,13 @@
                         </div>
                     </#if>
                 </#list>
+                <div id="refresh_float"></div>
             </div>
             <!--横幅-->
             <div class="moon-content-news-right">
                 <!--横幅-->
-                <div id="top-side">
-                     <#if searchTopList?? && (searchTopList?size > 0)>
-                    <div style="margin-top: 11px" class="moon-news-card moon-height-js">
+                 <#if searchTopList?? && (searchTopList?size > 0)>
+                    <div style="margin-top: 11px;margin-bottom: 22px" class="moon-news-card moon-height-js">
                         <span class="moon-news-card-split2"></span>
                         <div class="news-hot-list">
                             <div class="news-hot-title"><p>热搜风云榜</p></div>
@@ -174,10 +174,12 @@
                         </div>
 
                     </div>
-                     </#if>
+                 </#if>
+                <div id="top-side">
+
                 <#--精彩图片-->
                     <#if graphic?? && (graphic?size > 0)>
-                    <div style="margin-top: 24px" class="moon-news-card moon-height-js">
+                    <div style="margin-top: 2px" class="moon-news-card moon-height-js">
                         <span class="moon-news-card-split2"></span>
                         <div class="news-atlas-list">
                             <div class="news-atlas-title"><p>精彩新闻</p></div>
@@ -187,7 +189,9 @@
                                     <div class="atlas-column-t-i">
                                         <a class="atlas-item-column-t-i"
                                            onclick="goTo(${classifyId},${item.getArticleId()})">
-                                            <img class="atlas-item-column-img" src="${item.getImgUrl()[0]}" alt="">
+                                            <div class="atlas-item-column-img">
+                                                <img class="" src="${item.getImgUrl()[0]}" alt="">
+                                            </div>
                                         </a>
                                         <a onclick="goTo(${classifyId},${item.getArticleId()})"
                                            class="atlas-item-column-info">${item.getTitle()}</a>
@@ -199,7 +203,6 @@
                     </div>
                     </#if>
                 </div>
-
                 <#if imgMap?? && (imgMap?size > 0)>
                     <div style="margin-top: 24px" class="moon-news-card moon-height-js">
                         <span class="moon-news-card-split2"></span>
@@ -211,8 +214,9 @@
                                         <div style="margin-bottom: 10px"
                                              onclick="goTo(${classifyId},${item.getArticleId()})">
                                             <a class="atlas-item-column-a">
-                                                <img class="atlas-item-column-img"
-                                                     src="${config.getImgPrefix()+item.getImgUrl()[0]}" alt="">
+                                                <div class="atlas-item-column-img">
+                                                    <img class="" src="${config.getImgPrefix()+item.getImgUrl()[0]}" alt="">
+                                                </div>
                                                 <p>${item.getImgUrl()?size}图</p>
                                             </a>
                                             <a class="atlas-item-column-info">${item.getTitle()}</a>
@@ -236,8 +240,9 @@
                                         <div style="margin-bottom: 10px"
                                              onclick="goTo(${classifyId},${item.getArticleId()})">
                                             <a class="atlas-item-column-a">
-                                                <img class="atlas-item-column-img"
-                                                     src="${config.getImgPrefix()+item.getImgUrl()[0]}" alt="">
+                                                <div class="atlas-item-column-img">
+                                                    <img class="" src="${config.getImgPrefix()+item.getImgUrl()[0]}" alt="">
+                                                </div>
                                                 <i class="layui-icon immnc mmnc-shipinbofangyingpian"></i>
                                             </a>
                                             <a class="atlas-item-column-info">${item.getTitle()}</a>
@@ -274,6 +279,21 @@
                                 <li class="moon-news-card">
                                     <a class="website-item-title">
                                         <span>中国互联网举报中心 电话:12377</span>
+                                    </a>
+                                </li>
+                                <li class="moon-news-card">
+                                    <a href="/images/dianxin.jpeg" target="_blank" class="website-item-title">
+                                        <span>增值电信业务经营许可证</span>
+                                    </a>
+                                </li>
+                                <li class="moon-news-card">
+                                    <a href="/images/网文.jpg" target="_blank" class="website-item-title">
+                                        <span>网络文化经营许可证</span>
+                                    </a>
+                                </li>
+                                <li class="moon-news-card">
+                                    <a href="/images/广播电视节目制作经营许可证.jpg" target="_blank" class="website-item-title">
+                                        <span>广播电视节目制作经营许可证</span>
                                     </a>
                                 </li>
                                 <li class="moon-news-card">

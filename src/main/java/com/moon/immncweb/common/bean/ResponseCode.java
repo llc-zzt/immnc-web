@@ -19,7 +19,8 @@ public enum ResponseCode {
     FAIL(-1,"操作失败"),
     LOGOUT_FAIL(-2,"注销登录失败"),
     SING_IN_INPUT_EMPTY(-5,"账户和密码均不能为空"),
-    NOT_SING_IN(-6,"用户未登录或身份异常");
+    NOT_SING_IN(-6,"用户未登录或身份异常"),
+    FILE_UPLOAD_FAIL(-7,"文件上传失败");
 
     public Integer code;
     public String msg;

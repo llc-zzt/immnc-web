@@ -26,8 +26,6 @@ function send() {
         valid()
         login_flag = true;
     }
-
-
     var userVO = JSON.parse($.cookie('userVO'));
     console.log(userVO)
     var myDate = new Date();
@@ -337,4 +335,12 @@ function postDetailAllComment(aid) {
 
         }
     );
+}
+
+function appDownload() {
+
+    var left_width = (window.innerWidth - 600) / 2;
+    //https://news.immnc.com/api/user/qrAuthorize?returnUrl=http://localhost:8080/login/wx
+    window.open("https://www.immnc.com/app/download.html", "_blank", "directories=no, status=no,left=" + left_width + ",top=150 resizable=no, copyhistory=yes, width=600, height=500")
+
 }

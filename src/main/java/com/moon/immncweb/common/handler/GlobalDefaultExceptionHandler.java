@@ -6,10 +6,12 @@ import com.moon.immncweb.common.exception.WebAuthorizeException;
 import lombok.extern.log4j.Log4j;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.ObjectError;
+import org.springframework.web.HttpRequestMethodNotSupportedException;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartException;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
@@ -19,7 +21,7 @@ import java.util.List;
  * @Date 2018/11/01
  * @Desc 全部异常拦截统一处理
  */
-@ControllerAdvice(basePackages = "com.moon.immncweb.core")
+@ControllerAdvice
 @Log4j
 public class GlobalDefaultExceptionHandler {
     @ExceptionHandler(MethodArgumentNotValidException.class)
@@ -42,6 +44,16 @@ public class GlobalDefaultExceptionHandler {
     @ResponseBody
     public ResponseVO apiException(APIException a){
         return ResponseVO.builder().code(a.getStatus()).msg(a.getMsg()).build();
+    }
+    @ExceptionHandler(MultipartException.class)
+    @ResponseBody
+    public ResponseVO multipartException(Exception a){
+        return ResponseVO.builder().code(-100).msg(a.getMessage()).build();
+    }
+    @ExceptionHandler(HttpRequestMethodNotSupportedException.class)
+    @ResponseBody
+    public ResponseVO httpRequestMethodNotSupportedException(HttpRequestMethodNotSupportedException a){
+        return ResponseVO.builder().code(-100).msg(a.getMessage()).build();
     }
 
 }

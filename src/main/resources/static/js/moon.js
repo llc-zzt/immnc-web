@@ -1,5 +1,8 @@
 var p = 0, t = 0;
-
+var layer;
+layui.use('layer', function () {
+    layer = layui.layer;
+});
 $(window).scroll(function (e) {
     p = $(this).scrollTop();
     if (t <= p) {
@@ -133,12 +136,23 @@ function getNav(classify) {
 function goTo(classifyId, newsId) {
     window.open('/detail/' + classifyId + '/' + newsId + '.html')
 }
+
+function goToSearch(){
+    var key = $("#bdcsMain").val();
+    if (key == ""){
+        layer.msg("请输入内容")
+    }else {
+        window.open('/search/page.html?key=' + key)
+    }
+
+}
 $(function () {
     if ($.cookie('userVO') != null) {
         var userVO = JSON.parse($.cookie('userVO'));
         //导航头像
         $("#userAvatar").css({"display":"block"})
         $("#userAvatar").attr("src",userVO.avatar)
+        $("#goToUserDesc").attr("href",'/user/'+userVO.userId+".html")
         $("#login_button").css({"display":"none"})
         //评论头像
         $("#cmt-username-valid").removeClass("user-login")
@@ -184,4 +198,6 @@ function valid() {
         }
     });
 }
+sessionStorage.setItem("history_login","0");
+sessionStorage.setItem("history_num",""+history.length);
 

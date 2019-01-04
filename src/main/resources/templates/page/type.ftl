@@ -116,9 +116,9 @@
             <!--横幅-->
             <div class="moon-content-news-right">
                 <!--横幅-->
-                <div id="top-side">
-                     <#if searchTopList?? && (searchTopList?size > 0)>
-                    <div style="margin-top: 11px" class="moon-news-card moon-height-js">
+                <!--横幅-->
+                <#if searchTopList?? && (searchTopList?size > 0)>
+                    <div style="margin-top: 11px;margin-bottom: 22px" class="moon-news-card moon-height-js">
                         <span class="moon-news-card-split2"></span>
                         <div class="news-hot-list">
                             <div class="news-hot-title"><p>热搜风云榜</p></div>
@@ -140,10 +140,12 @@
                         </div>
 
                     </div>
-                     </#if>
+                </#if>
+                <div id="top-side">
+
                 <#--精彩图片-->
                     <#if graphic?? && (graphic?size > 0)>
-                    <div style="margin-top: 24px" class="moon-news-card moon-height-js">
+                    <div style="margin-top: 2px" class="moon-news-card moon-height-js">
                         <span class="moon-news-card-split2"></span>
                         <div class="news-atlas-list">
                             <div class="news-atlas-title"><p>精彩新闻</p></div>
@@ -153,7 +155,9 @@
                                     <div class="atlas-column-t-i">
                                         <a class="atlas-item-column-t-i"
                                            onclick="goTo(${classifyId},${item.getArticleId()})">
-                                            <img class="atlas-item-column-img" src="${item.getImgUrl()[0]}" alt="">
+                                            <div class="atlas-item-column-img">
+                                                <img class="" src="${item.getImgUrl()[0]}" alt="">
+                                            </div>
                                         </a>
                                         <a onclick="goTo(${classifyId},${item.getArticleId()})"
                                            class="atlas-item-column-info">${item.getTitle()}</a>
@@ -176,8 +180,9 @@
                                         <div style="margin-bottom: 10px"
                                              onclick="goTo(${classifyId},${item.getArticleId()})">
                                             <a class="atlas-item-column-a">
-                                                <img class="atlas-item-column-img"
-                                                     src="${config.getImgPrefix()+item.getImgUrl()[0]}" alt="">
+                                                <div class="atlas-item-column-img">
+                                                    <img class="" src="${config.getImgPrefix()+item.getImgUrl()[0]}" alt="">
+                                                </div>
                                                 <p>${item.getImgUrl()?size}图</p>
                                             </a>
                                             <a class="atlas-item-column-info">${item.getTitle()}</a>
@@ -201,8 +206,9 @@
                                         <div style="margin-bottom: 10px"
                                              onclick="goTo(${classifyId},${item.getArticleId()})">
                                             <a class="atlas-item-column-a">
-                                                <img class="atlas-item-column-img"
-                                                     src="${config.getImgPrefix()+item.getImgUrl()[0]}" alt="">
+                                                <div class="atlas-item-column-img">
+                                                    <img class="" src="${config.getImgPrefix()+item.getImgUrl()[0]}" alt="">
+                                                </div>
                                                 <i class="layui-icon immnc mmnc-shipinbofangyingpian"></i>
                                             </a>
                                             <a class="atlas-item-column-info">${item.getTitle()}</a>
@@ -290,7 +296,7 @@
                         if (item.typeId == 2) {
                             var imgsDemo = "";
                             layui.each(item.imgUrl, function (index, item) {
-                                if (index < 5)
+                                if (index < 4)
                                     imgsDemo = imgsDemo + '<li><img src="' + urlPrefix + item + '" alt="' + item.title + '"></li>\n'
                             })
                             console.log('var imgsDemo=' + imgsDemo)

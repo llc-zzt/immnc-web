@@ -101,4 +101,13 @@ public interface ArticleInfoService {
      * @param articleId
      */
     void updateTopNum(String articleId);
+
+    /**
+     * 模糊搜索所有新闻
+     * @param page
+     * @param key
+     * @return
+     */
+    Page<NewsVO> pageLikeSearch(Page<ArticleInfo> page,String key);
+
 }
